@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <!-- Tailwind CSS CDN -->
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+
+
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-200">
+
+    <!-- নেভিগেশন বার -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">Resumint</h1>
+            
+            <!-- ডার্ক মোড টগল বাটন -->
+            <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none transition-colors">
+                <!-- লাইট মোড আইকন -->
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 14.121a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zm2.121-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z"></path>
+                </svg>
+                <!-- ডার্ক মোড আইকন -->
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- মেইন কন্টেন্ট এরিয়া -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- বাম পাশ: তথ্য ইনপুট ফর্ম -->
+        <section class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 h-fit lg:sticky lg:top-24">
+            <h2 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">Input Your Informatin Here</h2>
+            
+            <form method="POST" class="space-y-6">
+                <!-- জ্যাঙ্গো সিএসআরএফ টোকেন (প্রয়োজন অনুযায়ী আনকমেন্ট করুন) -->
+                <!-- {% csrf_token %} -->
+
+                <!-- ব্যক্তিগত তথ্য -->
+                <div class="space-y-3">
+                    <h3 class="input-title">Personal Details</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="input-label">First Name</label>
+                            <input type="text" name="name" placeholder="John Doe" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                        </div>
+                        <div>
+                            <label class="input-label">Last Name</label>
+                            <input type="text" name="title" placeholder="Full Stack Developer" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="input-label">Email</label>
+                            <input type="email" name="email" placeholder="john@example.com" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                        </div>
+                        <div>
+                            <label class="input-label">Mobile No</label>
+                            <input type="text" name="phone" placeholder="+880123456789" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-gray-200 dark:border-gray-700">
+
+                <!-- অভিজ্ঞতা -->
+                <div class="space-y-3">
+                    <h3 class="input-title">Work Experience</h3>
+                    <div>
+                        <label class="input-label">Company Name and Timeline</label>
+                        <input type="text" name="experience_company" placeholder="ABC Tech (2024 - বর্তমান)" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none mb-2">
+                        <label class="input-label">Details</label>
+                        <textarea name="experience_details" rows="3" placeholder="আপনার দায়িত্ব ও অর্জনগুলো লিখুন..." class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"></textarea>
+                    </div>
+                </div>
+
+                <hr class="border-gray-200 dark:border-gray-700">
+
+                <!-- স্কিল বা দক্ষতা -->
+                <div class="space-y-3">
+                    <h3 class="input-title">Skills</h3>
+                    <div>
+                        <label class="input-label">Write Your Skills Here (comma separeted)</label>
+                        <input type="text" name="skills" placeholder="Python, Django, Tailwind CSS, JavaScript" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                    </div>
+                </div>
+
+                <!-- সাবমিট বাটন -->
+                <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow transition-colors text-sm">
+                    Create Resume
+                </button>
+            </form>
+        </section>
+
+        <!-- ডান পাশ: রেজুমি প্রিভিউ এরিয়া -->
+        <section class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 min-h-[600px] flex flex-col justify-between">
+            <!-- রেজুমি কন্টেন্ট (এখানে জ্যাঙ্গো থেকে আসা ডাটা বসবে) -->
+            <div>
+                <!-- হেডার অংশ -->
+                <div class="border-b-2 border-gray-200 dark:border-gray-700 pb-4 text-center sm:text-left">
+                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">John Doe</h2>
+                    <p class="text-sm text-blue-600 dark:text-blue-400 font-medium mt-1">Full Stack Developer</p>
+                    <div class="mt-2 flex flex-wrap justify-center sm:justify-start gap-4 text-xs text-gray-500 dark:text-gray-400">
+                        <span>john@example.com</span>
+                        <span>•</span>
+                        <span>+880123456789</span>
+                    </div>
+                </div>
+
+                <!-- অভিজ্ঞতা অংশ -->
+                <div class="mt-6">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">অভিজ্ঞতা</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-800 dark:text-gray-200">ABC Tech</h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">2024 - বর্তমান</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                জ্যাঙ্গো ফ্রেমওয়ার্ক ব্যবহার করে বিভিন্ন ওয়েব অ্যাপ্লিকেশন তৈরি ও ব্যাকএন্ড লজিক ম্যানেজ করা।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- স্কিল অংশ -->
+                <div class="mt-6">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">দক্ষতা</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">Python</span>
+                        <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">Django</span>
+                        <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">Tailwind CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- প্রিন্ট/ডাউনলোড অপশন -->
+            <div class="mt-8 pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-end">
+                <button onclick="window.print()" class="px-4 py-2 text-xs font-medium border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    PDF ডাউনলোড করুন
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="{% static 'js/app.js' %}"></script>
+
+
+ 
+</body>
+</html>
